@@ -1,1 +1,5 @@
 python-selenium-venv/
+tests/.pytest_cache
+tests/reports
+.pytest_cache
+page_objects/
