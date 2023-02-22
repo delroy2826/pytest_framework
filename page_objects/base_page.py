@@ -14,15 +14,15 @@ class BasePage:
         return self._driver.find_element(*locator)
 
     def _type(self, locator: tuple, text: str, time: int = 10):
-        self._wait_until_element_is_visible(locator, time)
+        self._wait_until_element_is_clickable(locator, time)
         self._find(locator).send_keys(text)
 
     def _click(self, locator: tuple, time: int = 10):
-        self._wait_until_element_is_visible(locator, time)
+        self._wait_until_element_is_clickable(locator, time)
         self._find(locator).click()
 
     def _clear(self, locator:tuple, time: int = 10):
-        self._wait_until_element_is_visible(locator, time)
+        self._wait_until_element_is_clickable(locator, time)
         self._find(locator).clear()
 
     def _wait_until_element_is_visible(self, locator: tuple, time: int = 10):
