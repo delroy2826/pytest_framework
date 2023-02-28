@@ -19,6 +19,7 @@ class BasePage:
     def _find(self, locator: tuple) -> WebElement:
         return self._driver.find_element(*locator)
 
+
     def _find_elements(self, locator: tuple, time: int = 10) -> list:
         self._wait_until_presence_of_all_elements_located(locator, time)
         return self._driver.find_elements(*locator)
