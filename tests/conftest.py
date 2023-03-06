@@ -6,10 +6,10 @@ from webdriver_manager.firefox import GeckoDriverManager
 import pytest
 
 
-#@pytest.fixture(params=['chrome'])
+# @pytest.fixture(params=['chrome'])
 @pytest.fixture()
 def driver(request):
-    #browser = request.param #Multi Browser
+    # browser = request.param #Multi Browser
     browser = request.config.getoption("--browser")
     print(f"Creating {browser} Driver")
     if browser == "chrome":
@@ -19,7 +19,7 @@ def driver(request):
     else:
         raise TypeError(f"Expected 'chrome' or 'firefox' but got {browser}")
     my_driver.maximize_window()
-    #my_driver.implicitly_wait(20)
+    # my_driver.implicitly_wait(20)
     yield my_driver
     print(f"Closing {browser} Driver")
     my_driver.quit()
