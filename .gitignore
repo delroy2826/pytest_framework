@@ -1,6 +1,6 @@
 venv
 .idea
 .pytest_cache
-page_objects/
+page_objects/__pycache__
 reports
 tests/__pycache__
