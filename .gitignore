@@ -1,6 +1,6 @@
-python-selenium-venv/
-tests/.pytest_cache
-tests/reports
+venv
+.idea
 .pytest_cache
 page_objects/
-.idea
+reports
+tests/__pycache__
