@@ -13,29 +13,39 @@ import time as waittime
 class BasePage:
 
     def __init__(self, driver: WebDriver):
+        """ Driver Instance"""
         self._driver = driver
 
     # Finding Elements
     def _find(self, locator: tuple) -> WebElement:
+        """ find single element using locator"""
         return self._driver.find_element(*locator)
 
-
     def _find_elements(self, locator: tuple, time: int = 10) -> list:
+        """ find multiple element instance using locator"""
         self._wait_until_presence_of_all_elements_located(locator, time)
         return self._driver.find_elements(*locator)
 
     # Clicking Element
     def _click(self, locator: tuple, time: int = 10) -> None:
+        """ Clicking on the element"""
         self._wait_until_element_is_visible(locator, time)
         self._find(locator).click()
 
+    def _clickJS(self, locator: tuple, time: int = 10) -> None:
+        """ Clicking on the element using JavaScript Click"""
+        self._wait_until_element_is_clickable(locator, time)
+        self._driver.execute_script("arguments[0].click()", self._find(locator))
+
     # Entering text in Input Fields
     def _type(self, locator: tuple, text: str, time: int = 10) -> None:
+        """ Entering text into input field"""
         self._wait_until_element_is_visible(locator, time)
         self._find(locator).send_keys(text)
 
     # Clearing Text Box
     def _clear(self, locator: tuple, time: int = 10) -> None:
+        """ Clearing the field"""
         self._wait_until_element_is_visible(locator, time)
         self._find(locator).clear()
         waittime.sleep(2)
@@ -141,6 +151,11 @@ class BasePage:
     def _open_url(self, url: str) -> None:
         self._driver.get(url)
 
+    def _open_link_in_new_tab_get_attribute(self, locator: tuple, time: int = 10) -> None:
+        source = WebDriverWait(self._driver, time).until(EC.presence_of_element_located(locator))
+        url = source.get_attribute("href")
+        self._driver.execute_script(f"window.open('{url}');")
+
     # Extracting Methods
     def _get_text(self, locator: tuple, time: int = 10) -> str:
         self._wait_until_element_is_visible(locator, time)
@@ -151,6 +166,14 @@ class BasePage:
 
     def _get_title(self) -> str:
         return self._driver.title
+
+    def _get_attribute_value(self, locator: tuple, attributename: str, time: int = 10) -> str:
+        source = WebDriverWait(self._driver, time).until(EC.presence_of_element_located(locator))
+        return source.get_attribute(attributename)
+
+    def _get_element_count(self, locator: tuple, time: int = 10) -> int:
+        source = WebDriverWait(self._driver, time).until(EC.presence_of_all_elements_located(locator))
+        return len(self._find_elements(source))
 
     # Drop down methods
     def _get_drp_dwn_opts(self, locator: tuple, option_value_by_text: bool = False, time: int = 10) -> list:
@@ -188,6 +211,22 @@ class BasePage:
     def _drag_and_drop_clk_hld_move_to_element(self, source: tuple, target: tuple) -> None:
         action_chains = ActionChains(self._driver)
         action_chains.click_and_hold(self._find(source)).pause(2).move_to_element(self._find(target)).perform()
+
+    # Mouse Action
+    def _mouse_double_click_at_source(self, locator: tuple, time: int = 10) -> None:
+        source = WebDriverWait(self._driver, time).until(EC.presence_of_element_located(locator))
+        action = ActionChains(self._driver)
+        action.double_click(source).perform()
+
+    def _mouse_context_click_at_source(self, locator: tuple, time: int = 10) -> None:
+        source = WebDriverWait(self._driver, time).until(EC.presence_of_element_located(locator))
+        action = ActionChains(self._driver)
+        action.context_click(source).perform()
+
+    def _mouse_hover_at_source(self, locator: tuple, time: int = 10) -> None:
+        source = WebDriverWait(self._driver, time).until(EC.presence_of_element_located(locator))
+        action = ActionChains(self._driver)
+        action.move_to_element(source).perform()
 
     # Windows Handle
     def _get_current_window_address(self) -> str:
@@ -273,9 +312,8 @@ class BasePage:
     def _delete_cookie_by_name(self, name: str) -> None:
         self._driver.delete_cookie(name)
 
-    def _get_attribute_value(self, locator: tuple, attribute, time: int = 10) -> str:
-        self._wait_until_element_is_visible(locator, time)
-        element = self._find(locator)
-        return element.get_attribute(attribute)
-
-
+    # Element Modification
+    def _update_attribute_value(self, locator: tuple, attributeName: str, attributeValue: str, time: int = 10) -> None:
+        source = WebDriverWait(self._driver, time).until(EC.presence_of_element_located(locator))
+        self._driver.execute_script("arguments[0].setAttribute(arguments[1], arguments[2]);", source,
+                                    attributeName, attributeValue)
