@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.alert import Alert
+from selenium.webdriver.common.actions.wheel_input import ScrollOrigin
 import time as waittime
 
 
@@ -243,15 +244,19 @@ class BasePage:
 
     # Frame Handling
     def _switch_to_default_content(self) -> None:
+        """Switches to default content"""
         self._driver.switch_to.default_content()
 
     def _switch_to_frame_by_name_or_id_attribute(self, name_attribute: str) -> None:
+        """Switches to frame by name or id attribute"""
         self._driver.switch_to.frame(name_attribute)
 
     def _switch_to_parent_frame(self) -> None:
+        """Switches back to parent frame"""
         self._driver.switch_to.parent_frame()
 
     def _switch_to_frame_using_locator(self, locator: tuple) -> None:
+        """Switches to frame using Locator"""
         self._driver.switch_to.frame(self._find(locator))
 
     # Alert Handling
@@ -259,7 +264,8 @@ class BasePage:
         alert = Alert(self._driver)
         return alert
 
-    def _alert_accept(self, extract_text: bool = False) -> str:
+    def _alert_accept(self, extract_text: bool = False) -> str | None:
+        """Accepts alert prompt and extracts text as per requirement"""
         alert_text = None
         reference = self._alert_reference()
         if extract_text:
@@ -267,7 +273,8 @@ class BasePage:
         reference.accept()
         return alert_text
 
-    def _alert_dismiss(self, extract_text: bool = False) -> str:
+    def _alert_dismiss(self, extract_text: bool = False) -> str | None:
+        """Dismisses alert prompt and extracts text as per requirement"""
         alert_text = None
         reference = self._alert_reference()
         if extract_text:
@@ -275,7 +282,8 @@ class BasePage:
         reference.dismiss()
         return alert_text
 
-    def _alert_prompt_field(self, type_text: str = "test", extract_text: bool = False) -> str:
+    def _alert_prompt_field(self, type_text: str = "test", extract_text: bool = False) -> str | None:
+        """Enters text in the field and extracts text as per requirement"""
         alert_text = None
         reference = self._alert_reference()
         reference.send_keys(type_text)
@@ -285,35 +293,115 @@ class BasePage:
 
     # Browser Navigation
     def _navigate_forward(self) -> None:
+        """Navigates to forward page"""
         self._driver.forward()
 
     def _navigate_backward(self) -> None:
+        """Navigates to previous page"""
         self._driver.back()
 
     def _close_current_window(self) -> None:
+        """Closes the current window or tab of the browser"""
         self._driver.close()
 
     def _current_page_refresh(self) -> None:
+        """Refresh the web page"""
         self._driver.refresh()
 
     # Cookies Handling
     def _set_cookies(self, dict_data: dict) -> None:
+        """Adds cookies using dictionary"""
         self._driver.add_cookie(dict_data)
 
     def _get_cookies(self) -> list[dict]:
+        """Extracts all cookies"""
         return self._driver.get_cookies()
 
     def _get_cookie_by_name(self, name: str) -> dict | None:
+        """Extracts cookies by name"""
         return self._driver.get_cookie(name)
 
     def _delete_all_cookies(self) -> None:
+        """Deletes all cookies"""
         self._driver.delete_all_cookies()
 
     def _delete_cookie_by_name(self, name: str) -> None:
+        """Deletes the cookie by name"""
         self._driver.delete_cookie(name)
 
     # Element Modification
     def _update_attribute_value(self, locator: tuple, attributeName: str, attributeValue: str, time: int = 10) -> None:
+        """Update tag attribute and attribute value"""
         source = WebDriverWait(self._driver, time).until(EC.presence_of_element_located(locator))
         self._driver.execute_script("arguments[0].setAttribute(arguments[1], arguments[2]);", source,
                                     attributeName, attributeValue)
+
+    # Scrolling
+    def _scroll_to_element(self, locator: tuple, time: int = 10) -> None:
+        """Scroll to the defined element"""
+        source = WebDriverWait(self._driver, time).until(EC.presence_of_element_located(locator))
+        action_chains = ActionChains(self._driver)
+        action_chains.scroll_to_element(source).perform()
+
+    def _scroll_by_amount(self, delta_x: int = 0, delta_y: int = 0, time: int = 10) -> None:
+        """
+        Scrolls the page using provided attributes delta_x and delta_y
+        - delta_x: Distance along X axis to scroll using the wheel. A negative value scrolls left.
+        - delta_y: Distance along Y axis to scroll using the wheel. A negative value scrolls up."""
+        counter = 0
+        while counter < time + 1:
+            status = self._driver.execute_script("return document.readyState")
+            if status in ("complete", "interactive"):
+                break
+            counter += 1
+        action_chains = ActionChains(self._driver)
+        action_chains.scroll_by_amount(delta_x, delta_y).perform()
+
+    def _scroll_by_origin_by_element(self, locator: tuple, delta_x: int = 0, delta_y: int = 0, time: int = 10) -> None:
+        """
+        Scrolls the page from the element location to provided delta_x and delta_y
+        - origin: Where scroll originates (viewport or element center) plus provided offsets.
+        - delta_x: Distance along X axis to scroll using the wheel. A negative value scrolls left.
+        - delta_y: Distance along Y axis to scroll using the wheel. A negative value scrolls up."""
+        source = WebDriverWait(self._driver, time).until(EC.presence_of_element_located(locator))
+        scroll_origin = ScrollOrigin.from_element(source)
+        counter = 0
+        while counter < time + 1:
+            status = self._driver.execute_script("return document.readyState")
+            if status in ("complete", "interactive"):
+                break
+            counter += 1
+        action_chains = ActionChains(self._driver)
+        action_chains.scroll_from_origin(scroll_origin, delta_x, delta_y).perform()
+
+    def _scroll_by_js(self, delta_x: int = 0, delta_y: int = 0, time: int = 10) -> None:
+        """
+        - delta_x: Distance along X axis to scroll using the wheel. A negative value scrolls left.
+        - delta_y: Distance along Y axis to scroll using the wheel. A negative value scrolls up."""
+        counter = 0
+        while counter < time + 1:
+            status = self._driver.execute_script("return document.readyState")
+            if status in ("complete", "interactive"):
+                break
+            counter += 1
+        self._driver.execute_script(f"window.scrollBy({delta_x},{delta_y})")
+
+    def _scroll_into_view_js(self, locator: tuple, time: int = 10) -> None:
+        """Scrolling to element using locator"""
+        source = WebDriverWait(self._driver, time).until(EC.presence_of_element_located(locator))
+        self._driver.execute_script("arguments[0].scrollIntoView();", source)
+
+    def _return_page_height(self) -> int:
+        """Returns total height of the page"""
+        total_height = self._driver.execute_script("return document.body.parentNode.scrollHeight")
+        return total_height
+
+    def _scroll_to_end_of_page(self, time: int = 10):
+        """Scroll to end of the page"""
+        counter = 0
+        while counter < time + 1:
+            status = self._driver.execute_script("return document.readyState")
+            if status in ("complete", "interactive"):
+                break
+            counter += 1
+        self._driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
