@@ -1,10 +1,10 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
-
+from page_objects.db_base_page import DButils
 from page_objects.base_page import BasePage
 
 
-class ExceptionPage(BasePage):
+class ExceptionPage(BasePage, DButils):
     __url = "https://practicetestautomation.com/practice-test-exceptions/"
     __add_btn = (By.XPATH, "//button[text()='Add']")
     __save_btn_row2 = (By.XPATH, "//div[@id='row2']//button[text()='Save']")
@@ -16,8 +16,9 @@ class ExceptionPage(BasePage):
     __row1_saved_succ_msg = (By.XPATH, "//div[text()='Row 1 was saved']")
     __txt_instruction_msg = (By.XPATH, "//p[@id='instructions']")
 
-    def __init__(self, driver: WebDriver):
+    def __init__(self, driver: WebDriver, db_name: str = None):
         super().__init__(driver)
+        self.db = DButils(database=db_name)
 
     def open(self):
         super()._open_url(self.__url)
@@ -76,4 +77,3 @@ class ExceptionPage(BasePage):
         if actualtxtmsg == expectedtext:
             return True
         return False
-

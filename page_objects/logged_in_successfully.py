@@ -1,19 +1,18 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
+from page_objects.db_base_page import DButils
 from page_objects.base_page import BasePage
 
 
-class LoggedInSuccessfullyPage(BasePage):
+class LoggedInSuccessfullyPage(BasePage, DButils):
     __url = "https://practicetestautomation.com/logged-in-successfully/"
     __actual_success_msg_txt_area = (By.XPATH, "//h1[text()='Logged In Successfully']")
     __logout_btn = (By.XPATH, "//a[text()='Log out']")
     __header_locator = (By.CLASS_NAME, "post-title")
 
-    def __init__(self, driver: WebDriver):
+    def __init__(self, driver: WebDriver, db_name: str = None):
         super().__init__(driver)
+        self.db = DButils(database=db_name)
 
     @property
     def expected_url(self) -> str:
