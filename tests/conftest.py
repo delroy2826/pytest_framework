@@ -4,6 +4,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.firefox import GeckoDriverManager
 import pytest
+from page_objects.db_base_page import DButils
+import config
 
 
 # @pytest.fixture(params=['chrome'])
@@ -19,8 +21,11 @@ def driver(request):
     else:
         raise TypeError(f"Expected 'chrome' or 'firefox' but got {browser}")
     my_driver.maximize_window()
-    # my_driver.implicitly_wait(20)
+    if config.implicit_wait:
+        my_driver.implicitly_wait(config.wait_time)
     yield my_driver
+    print("Closing Database Connection")
+    DButils.close_connection()
     print(f"Closing {browser} Driver")
     my_driver.quit()
 

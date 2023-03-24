@@ -133,3 +133,45 @@ class TestPositiveScenario:
     def test_db_17(self, driver, db_name, table_name, tb_structure):
         login_page = LoginPage(driver, db_name=db_name)
         login_page.create_database_and_drop(table_name, tb_structure)
+
+    @pytest.mark.db_test
+    @pytest.mark.parametrize(('db_name', 'table_name', 'set_condition', 'where_condition'),
+                             [("cm_devices", 'customers', "fullname='BB',email='BBB'", "username='B'")])
+    def test_db_18(self, driver, db_name, table_name, set_condition, where_condition):
+        login_page = LoginPage(driver, db_name=db_name)
+        login_page.update_records(table_name, set_condition, where_condition)
+
+    @pytest.mark.db_test
+    @pytest.mark.parametrize(('db_name', 'table_name', 'add_columns'),
+                             [("college", 'students', ["address_1 VARCHAR(5)", "address_2 VARCHAR(10)"])])
+    def test_db_19(self, driver, db_name, table_name, add_columns):
+        login_page = LoginPage(driver, db_name=db_name)
+        login_page.add_columns(table_name, add_columns)
+
+    @pytest.mark.db_test
+    @pytest.mark.parametrize(('db_name', 'table_name', 'modify_columns'),
+                             [("college", 'students', ["address_1 VARCHAR(50)", "address_2 VARCHAR(50)"])])
+    def test_db_20(self, driver, db_name, table_name, modify_columns):
+        login_page = LoginPage(driver, db_name=db_name)
+        login_page.modify_columns(table_name, modify_columns)
+
+    @pytest.mark.db_test
+    @pytest.mark.parametrize(('db_name', 'table_name', 'rname_columns'),
+                             [("college", 'students', ["address_1 TO Address_1", "address_2 TO Address_2"])])
+    def test_db_21(self, driver, db_name, table_name, rname_columns):
+        login_page = LoginPage(driver, db_name=db_name)
+        login_page.rename_columns(table_name, rname_columns)
+
+    @pytest.mark.db_test
+    @pytest.mark.parametrize(('db_name', 'table_name', 'drp_columns'),
+                             [("college", 'students', ["Address_1", "Address_2"])])
+    def test_db_22(self, driver, db_name, table_name, drp_columns):
+        login_page = LoginPage(driver, db_name=db_name)
+        login_page.drop_columns(table_name, drp_columns)
+
+    @pytest.mark.db_test
+    @pytest.mark.parametrize(('db_name', 'query'),
+                             [("college", 'SHOW TABLES')])
+    def test_db_23(self, driver, db_name, query):
+        login_page = LoginPage(driver, db_name=db_name)
+        login_page.full_query(query)
