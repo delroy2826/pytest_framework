@@ -94,3 +94,26 @@ class LoginPage(BasePage, DButils):
         print(self.db._get_tables_in_database())
         self.db._drop_table_from_database(tb_name)
         print(self.db._get_tables_in_database())
+
+    def update_records(self, tb_name, set_condition, where_condition):
+        self.db._update_records_in_the_table(tb_name, set_condition, where_condition)
+        print(self.db._display_all_table_data(tb_name))
+
+    def add_columns(self, tb_name, add_columns):
+        self.db._add_columns_in_the_table(tb_name, add_columns)
+        print(self.db._display_columns_from_table(tb_name))
+
+    def modify_columns(self, tb_name, modify_columns):
+        self.db._modify_columns_in_the_table(tb_name, modify_columns)
+        print(self.db._display_columns_from_table(tb_name))
+
+    def rename_columns(self, tb_name, rname_columns):
+        self.db._rename_columns_in_the_table(tb_name, rname_columns)
+        print(self.db._display_columns_from_table(tb_name))
+
+    def drop_columns(self, tb_name, drp_columns):
+        self.db._drop_columns_in_the_table(tb_name, drp_columns)
+        print(self.db._display_columns_from_table(tb_name))
+
+    def full_query(self, query):
+        print(self.db._complete_query_function(query))
