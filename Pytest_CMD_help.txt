@@ -1,0 +1,67 @@
+# """
+# Getting help on version, option names, environment variables
+# pytest --version   # shows where pytest was imported from
+# pytest --fixtures  # show available builtin function arguments
+# pytest -h | --help # show help on command line and config file options
+#
+# Run tests in a module
+# pytest test_mod.py
+#
+# Run tests in a directory
+# pytest testing/
+#
+# Run tests by keyword expressions
+# pytest -k "MyClass and not mepythod"
+#
+# Run tests by node ids
+# To run a specific test within a module:
+# pytest test_mod.py::test_func
+#
+# Another example specifying a test method in the command line:
+# pytest test_mod.py::TestClass::test_method
+#
+# Run tests by marker expressions
+# pytest -m slow
+#
+# Run tests by marker expressions
+# pytest -m slow
+#
+# Detailed summary report options
+# pytest -rA
+#
+# Below is the full list of characters available.
+# f- failed
+# E- error
+# s- skipped
+# x- xfailed
+# X- xpassed
+# p- passed
+# P-passed with output
+# a- all except pP
+# A- all
+#
+# Parallel execution
+# pytest -n 3
+# HTML Report Generation using Marker
+# Run Test on Main Folder level
+# 1) marker db_test
+# pytest -m db_test --html=reports/database_testcases/reportdatabsetest.html
+#
+# 2) All test cases
+# pytest --html=reports/all_tests/reportalltest.html
+#
+# 3)marker wait_test
+# pytest -m wait_test --html=reports/wait_test/reportwaittest.html
+#
+# 4) marker login
+# pytest -m login --html=reports/login_test/reportlogintest.html
+#
+# 5) marker positive
+# pytest -m positive --html=reports/positive/reportpositivetest.html
+#
+# 6) marker negative
+# pytest -m negative --html=reports/negative/reportnegativetest.html
+#
+# 7) marker math
+# pytest -m math --html=reports/math_test/reportmathtest.html
+
