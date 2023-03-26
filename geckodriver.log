@@ -1,0 +1,33 @@
+1679844955724	geckodriver	INFO	Listening on 127.0.0.1:54188
+1679844958763	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "54189" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\delolive\\AppData\\Local\\Temp\\rust_mozprofileWAo0xl"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1679844959825	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1679844959835	Marionette	INFO	Listening on port 54205
+Read port: 54204
+WebDriver BiDi listening on ws://127.0.0.1:54189
+1679844960343	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\delolive\\AppData\\Local\\Temp\\rust_mozprofileWAo0xl\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:54189/devtools/browser/2c8ea847-ef8d-411d-8f6f-a8b9e408125e
+1679844964353	Marionette	INFO	Stopped listening on port 54204
+Dynamically enable window occlusion 1
+console.error: services.settings: 
+  main/query-stripping Signature failed  TypeError: NetworkError: Network request failed
+console.error: (new NetworkError("Network error: TypeError: NetworkError: Network request failed", "resource://services-settings/RemoteSettingsClient.jsm", 116))
+1679845010059	geckodriver	INFO	Listening on 127.0.0.1:54282
+1679845013046	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "54283" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\delolive\\AppData\\Local\\Temp\\rust_mozprofilepuESDS"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1679845013649	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1679845013655	Marionette	INFO	Listening on port 54291
+Read port: 54291
+WebDriver BiDi listening on ws://127.0.0.1:54283
+1679845013898	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\delolive\\AppData\\Local\\Temp\\rust_mozprofilepuESDS\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:54283/devtools/browser/0d1e047b-30bd-44c1-bd6a-6b2dafedeef3
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://practicetestautomation.com."
+[Parent 25068, IPC I/O Parent] WARNING: DuplicateHandle failed for handle 0 in TransferHandles: file /builds/worker/checkouts/gecko/ipc/chromium/src/chrome/common/ipc_channel_win.cc:777
+1679845022936	Marionette	INFO	Stopped listening on port 54291
+Dynamically enable window occlusion 1
