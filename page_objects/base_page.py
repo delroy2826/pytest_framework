@@ -63,8 +63,11 @@ class BasePage:
         :param text: Text to be entered in the input field
         :param time: Time in Seconds
         """
-        self._wait_until_element_is_visible(locator, time)
-        self._find(locator).send_keys(text)
+        instance = self._wait_until_element_is_visible(locator, time)
+        if instance:
+            instance.send_keys(text)
+        else:
+            print(f"Failed function '_type' for {instance}")
 
     # Clearing Text Box
     def _clear(self, locator: tuple, time: int = 10) -> None:
@@ -78,7 +81,7 @@ class BasePage:
         waittime.sleep(2)
 
     # Expected Condition Waits
-    def _wait_until_element_is_visible(self, locator: tuple, time: int = 10) -> None:
+    def _wait_until_element_is_visible(self, locator: tuple, time: int = 10) -> WebElement | bool:
         """
         Waits until element is visible
         :param locator: Element Identifier
@@ -87,9 +90,9 @@ class BasePage:
         """
         try:
             wait = WebDriverWait(self._driver, time)
-            wait.until(EC.visibility_of_element_located(locator))
+            return wait.until(EC.visibility_of_element_located(locator))
         except Exception as error:
-            print(f"Error: {error}")
+            raise Exception(f"Error: {error}")
 
     def _wait_until_element_is_clickable(self, locator: tuple, time: int = 10) -> None:
         """
@@ -221,14 +224,15 @@ class BasePage:
         return self._driver.current_url
 
     # Is Displayed, enabled and Selected
-    def _is_displayed(self, locator: tuple) -> bool:
+    def _is_displayed(self, locator: tuple, time: int = 10) -> bool:
         """
         Checks if Element is Displayed
         :param locator: Element Identifier
         :return: Returns True or False
         """
         try:
-            return self._find(locator).is_displayed()
+            instance = self._wait_until_element_is_visible(locator, time)
+            return instance.is_displayed()
         except NoSuchElementException:
             return False
 
@@ -323,7 +327,7 @@ class BasePage:
         """
         Returns List of options available in the drop down
         :param locator: Element Identifier
-        :param option_value_by_text: If want to extract text then value will be True else False
+        :param option_value_by_text: If you want to extract text then value will be True else False
         :param time: Time in Seconds
         :return: Returns List
         """
