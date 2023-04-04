@@ -1,0 +1,35 @@
+# TC_1
+# Verify all fields are displayed in login form
+# Step 1: Lauch URL https://rahulshettyacademy.com/loginpagePractise/
+# Step 2: Validate Display of login fields
+#         Expected Login Page content :
+#             Username -> Input Field
+#             Password -> Input Field
+#             Admin -> Round Button
+#             User  -> Round Button
+#             Student, Teacher , Consultant -> Drop Down options
+#             Terms and Condition -> Checkbox
+#             Sign in -> Button
+
+# TC_2
+# Validate successful login
+# Step1: Lauch URL https://rahulshettyacademy.com/loginpagePractise/
+# Step2: Type "rahulshettyacademy" in username field
+# step3: Type "learning" in password field
+# step4: click on sign in button
+# step5: Verify shop page is displayed
+# step6: verify url
+#         Expected URL: https://rahulshettyacademy.com/angularpractice/shop
+# step7: verify checkout button is displayed
+
+# TC_3
+# Validate Unsuccessfull login
+# Step1: Lauch URL https://rahulshettyacademy.com/loginpagePractise/
+# Step2: Type "invaliduname" in username field
+# step3: Type "invalidpword" in password field
+# step4: click on sign in button
+# step5: Verify error message or alert
+#         Expected : Incorrect username/password.
+
+
+

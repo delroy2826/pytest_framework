@@ -5,3 +5,4 @@ page_objects/__pycache__
 reports
 tests/__pycache__
 __pycache__
+tests/tests_ecommerce_tc/__pycache__

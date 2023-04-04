@@ -24,8 +24,9 @@ def driver(request):
     if config.implicit_wait:
         my_driver.implicitly_wait(config.wait_time)
     yield my_driver
-    print("Closing Database Connection")
-    DButils.close_connection()
+    if config.database_execute:
+        DButils.close_connection()
+        print("Closing Database Connection")
     print(f"Closing {browser} Driver")
     my_driver.quit()
 
