@@ -4,7 +4,7 @@ from page_objects.login_page import LoginPage
 
 
 class TestNegativeScenario:
-
+    @pytest.mark.All
     @pytest.mark.login
     @pytest.mark.negative
     @pytest.mark.parametrize(("username", "password", "unexpectedness"),

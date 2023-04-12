@@ -233,7 +233,8 @@ class BasePage:
         try:
             instance = self._wait_until_element_is_visible(locator, time)
             return instance.is_displayed()
-        except NoSuchElementException:
+        except Exception as error:
+            print(error)
             return False
 
     def _is_enabled(self, locator: tuple) -> bool:
@@ -284,8 +285,8 @@ class BasePage:
         :param time: Time in Seconds
         :return: Return String
         """
-        self._wait_until_element_is_visible(locator, time)
-        return self._find(locator).text
+        instance = self._wait_until_element_is_visible(locator, time)
+        return instance.text
 
     def _get_page_source(self) -> str:
         """

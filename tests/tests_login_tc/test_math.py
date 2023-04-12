@@ -5,6 +5,7 @@ def add_two_numbers(a, b):
     return a + b
 
 
+@pytest.mark.All
 @pytest.mark.math
 @pytest.mark.parametrize(("num1", "num2", "result"),
                          [(1, 2, 3),
@@ -14,6 +15,7 @@ def test_small_number(num1, num2, result):
     assert add_two_numbers(num1, num2) == result, f"The sum {num1} and {num2} should be {result}"
 
 
+@pytest.mark.All
 @pytest.mark.math
 @pytest.mark.parametrize(("num1", "num2", "result"),
                          [(100, 200, 300),

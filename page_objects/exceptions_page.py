@@ -36,8 +36,7 @@ class ExceptionPage(BasePage, DButils):
         super()._click(self.__edit_btn_row1)
 
     def is_row2_field_displayed(self, time: int = 10) -> bool:
-        super()._wait_until_element_is_visible(self.__row2_input_field, time)
-        return super()._is_displayed(self.__row2_input_field)
+        return not super()._is_displayed(self.__row2_input_field, time)
 
     def add_text_row2(self, text: str):
         super()._type(self.__row2_input_field, text)
@@ -69,7 +68,6 @@ class ExceptionPage(BasePage, DButils):
         super()._clear(self.__row1_input_field)
 
     def is_instruction_msg_displayed(self) -> bool:
-        super()._wait_until_element_is_visible(self.__txt_instruction_msg)
         return super()._is_displayed(self.__txt_instruction_msg)
 
     def verify_instruction_txt_msg(self, expectedtext: str) -> bool:
