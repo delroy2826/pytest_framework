@@ -31,5 +31,22 @@
 # step5: Verify error message or alert
 #         Expected : Incorrect username/password.
 
+#TC_4
+# Validate New tab is opened and verify Document Request title, url
+# Step1: Lauch URL https://rahulshettyacademy.com/loginpagePractise/
+# Step2: Click on Free Access to InterviewQues
+# Step3: New table should open
+# Step4: Verify the URL
+#         Expected URL: https://rahulshettyacademy.com/documents-request
+# Step5: Verify the header to display "DOCUMENTS REQUEST"
+# Step6: Go back to Parent tab and Login
+# Step7: Type "rahulshettyacademy" in username field
+# step8: Type "learning" in password field
+# step9: click on sign in button
+# step10: Verify shop page is displayed
+# step11: verify url
+#         Expected URL: https://rahulshettyacademy.com/angularpractice/shop
+# step12: verify checkout button is displayed
+
 
 

@@ -1,0 +1,56 @@
+# Jenkins Setup
+# 1) Download Jenkins https://www.jenkins.io/download/   War file
+# 2) open cmd where the war file is located and run following command
+# Syntax: java -jar jenkin.war -httpPort=<portnumber or 9090>
+#         java -jar jenkins.war -httpPort=9090
+# 3) Save below details got from above output
+# 362ea5b854564fc699194b4efaf51c14
+# C:\Users\delolive\.jenkins\secrets\initialAdminPassword
+# 4) Open Browser and enter
+# localhost:8080
+# and paste the above credential
+# 5) Click on Install Suggested Plugin
+# 6) Create first admin user
+# username : delolive
+# pw: Q1w2e3r4t5
+#
+# a) New Item->Enter item name-> Freestyle Project->ok
+# b) build configuration
+# Configure
+#         -> General -> Advanced -> Use custom WorkSpace->Directory
+#                 Example: Path of the Project Folder
+#                 C:\Users\delolive\Desktop\PycharmProject\Framework\pytest_framework
+#         -> General -> This Project is Parameterized
+#                 1)Add Parameter-> Choice Parameter
+#                         Name:
+#                                 Browser
+#                         Choices:
+#                                 chrome
+#                                 firefox
+#                 2)Add Parameter-> Choice Parameter
+#                         Name:
+#                                 TagTest
+#                         Choices:
+#                                 All
+#                                 math
+#                                 login
+#                                 positive
+#                                 negative
+#                                 db_test
+#                                 wait_test
+#                                 content_validation
+#                                 ecom_login
+#                                 invalid_login
+#                 3)Add Parameter-> Choice Parameter
+#                         Name:
+#                                 parrallel
+#                         Choices:
+#                                 1
+#                                 2
+#                                 3
+#                                 4
+#                                 5
+#         -> If using parameterized project : Build Steps -> Add Build Steps -> Execute Windows batch command
+#                 call venv\Scripts\activate.bat
+#                 pytest -m  %TagTest% -n %parrallel% --html=reports/%TagTest%/report%TagTest%test.html
+#         -> Save

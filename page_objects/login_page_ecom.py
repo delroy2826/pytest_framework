@@ -15,6 +15,8 @@ class LoginPageEcommerce(BasePage):
     _txt_password = (By.XPATH, '//input[@id="password"]')
     _lbl_alert_err_msg = (By.XPATH, "//div[contains(@class,'alert') and contains(text(),"
                                     "' username/password.')]//strong[text()='Incorrect']")
+    _lnk_blinking_text = (By.XPATH, '//a[@class="blinkingText"]')
+    _txt_header_page_title = (By.XPATH, "//section[@class='page-title']//h1")
 
     def __init__(self, driver: WebDriver):
         super().__init__(driver)
@@ -66,3 +68,20 @@ class LoginPageEcommerce(BasePage):
 
     def validate_login_error_msg_displayed(self):
         assert super()._is_displayed(self._lbl_alert_err_msg), "Login Error message not displayed"
+
+    def click_on_blinking_text(self):
+        super()._clickJS(self._lnk_blinking_text)
+
+    def get_window_addresses(self) -> list:
+        return super()._get_all_window_addresses()
+
+    def change_window(self, window_address: str):
+        super()._switch_to_window(window_address)
+
+    def verify_new_tab_page_title(self, page_title):
+        extracted_text = super()._get_text(self._txt_header_page_title)
+        assert extracted_text == page_title, "Title is not same"
+
+    def url_validation(self, expected_url: str):
+        actual_url = super().current_url
+        assert expected_url == actual_url, f"Actual URL {actual_url} is not same as Expected URL {expected_url}"

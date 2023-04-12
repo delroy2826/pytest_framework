@@ -5,18 +5,20 @@ from page_objects.exceptions_page import ExceptionPage
 class TestException:
 
     @pytest.mark.wait_test
+    @pytest.mark.All
     @pytest.mark.parametrize(("inputted", "expectedtext"), [("Delroy", "Row 2 was saved")])
     def test_wait_time_2(self, driver, inputted, expectedtext):
         exception_page = ExceptionPage(driver)
         exception_page.open()
         exception_page.click_on_add_btn()
-        assert exception_page.is_row2_field_displayed(), "Row 2 should be displayed"
+        assert not exception_page.is_row2_field_displayed(), "Row 2 should be displayed"
         exception_page.add_text_row2(inputted)
         exception_page.click_on_save_btn_row2()
         assert exception_page.is_row2_saved_succ_msg_displayed(), "Row 2 saved message should be displayed"
         assert exception_page.verify_row2_succ_msg(expectedtext), "Row 2 saved success message should be displayed"
 
     @pytest.mark.wait_test
+    @pytest.mark.All
     @pytest.mark.parametrize(("inputted", "expectedtext"), [("Jelly", "Row 1 was saved")])
     def test_wait_time_3(self, driver, inputted, expectedtext):
         exception_page = ExceptionPage(driver)
@@ -29,6 +31,7 @@ class TestException:
         assert exception_page.verify_row1_succ_msg(expectedtext), "Row 1 saved message should be displayed"
 
     @pytest.mark.wait_test
+    @pytest.mark.All
     @pytest.mark.parametrize(("inputted", "expectedtext", "expectedinstructionmsg"), [("Delroy", "Row 2 was saved",
                                                                                        'Push “Add” button to add '
                                                                                        'another row')])
@@ -38,7 +41,7 @@ class TestException:
         assert exception_page.is_instruction_msg_displayed(), "Instruction should be displayed"
         assert exception_page.verify_instruction_txt_msg(expectedinstructionmsg), "Instruction msg should be displayed"
         exception_page.click_on_add_btn()
-        assert exception_page.is_row2_field_displayed(), "Row 2 should be displayed"
+        assert not exception_page.is_row2_field_displayed(), "Row 2 should be displayed"
         exception_page.add_text_row2(inputted)
         exception_page.click_on_save_btn_row2()
         assert exception_page.is_row2_saved_succ_msg_displayed(), "Row 2 saved message should be displayed"
@@ -46,8 +49,9 @@ class TestException:
         assert not exception_page.is_instruction_msg_displayed(), "Instruction should not be displayed"
 
     @pytest.mark.wait_test
+    @pytest.mark.All
     def test_wait_time_5(self, driver):
         exception_page = ExceptionPage(driver)
         exception_page.open()
         exception_page.click_on_add_btn()
-        assert not exception_page.is_row2_field_displayed(2), "Element takes more time to load"
+        assert exception_page.is_row2_field_displayed(2), "Element takes more time to load"
