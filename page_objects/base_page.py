@@ -43,8 +43,8 @@ class BasePage:
         :param locator: Element Identifier
         :param time: Time in Seconds
         """
-        self._wait_until_element_is_visible(locator, time)
-        self._find(locator).click()
+        instance = self._wait_until_element_is_clickable(locator, time)
+        instance.click()
 
     def _clickJS(self, locator: tuple, time: int = 10) -> None:
         """
@@ -52,8 +52,8 @@ class BasePage:
         :param locator: Element Identifier
         :param time: Time in Seconds
         """
-        self._wait_until_element_is_clickable(locator, time)
-        self._driver.execute_script("arguments[0].click()", self._find(locator))
+        instance = self._wait_until_element_is_clickable(locator, time)
+        self._driver.execute_script("arguments[0].click()", instance)
 
     # Entering text in Input Fields
     def _type(self, locator: tuple, text: str, time: int = 10) -> None:
@@ -94,7 +94,7 @@ class BasePage:
         except Exception as error:
             raise Exception(f"Error: {error}")
 
-    def _wait_until_element_is_clickable(self, locator: tuple, time: int = 10) -> None:
+    def _wait_until_element_is_clickable(self, locator: tuple, time: int = 10) -> WebElement:
         """
         Waits until element is clickable
         :param locator: Element Identifier
@@ -103,7 +103,7 @@ class BasePage:
         """
         try:
             wait = WebDriverWait(self._driver, time)
-            wait.until(EC.element_to_be_clickable(locator))
+            return wait.until(EC.element_to_be_clickable(locator))
         except Exception as error:
             print(f"Error: {error}")
 
@@ -702,3 +702,15 @@ class BasePage:
                 break
             counter += 1
         self._driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+
+    @staticmethod
+    def _positional_arg_locator(locator: tuple, *args) -> tuple:
+        """
+        Replaces arguments in locator element
+        :param locator: locator tuple passed
+        :param args: data or values to be inserted in locator str using string formatting
+        :return: return tuple
+        """
+        cp_locator = list(locator)
+        cp_locator[1] = cp_locator[1].format(*args)
+        return tuple(cp_locator)

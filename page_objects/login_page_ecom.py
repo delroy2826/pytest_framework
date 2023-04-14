@@ -17,6 +17,8 @@ class LoginPageEcommerce(BasePage):
                                     "' username/password.')]//strong[text()='Incorrect']")
     _lnk_blinking_text = (By.XPATH, '//a[@class="blinkingText"]')
     _txt_header_page_title = (By.XPATH, "//section[@class='page-title']//h1")
+    _btn_dialog_login_page = (By.XPATH, '//div[contains(@class,"modal-confirm")]//button[@id="okayBtn"]')
+    _input_username_or_pw = (By.XPATH, '//input[@name="{0}"]')
 
     def __init__(self, driver: WebDriver):
         super().__init__(driver)
@@ -36,7 +38,7 @@ class LoginPageEcommerce(BasePage):
     def verify_radio_user_displayed(self):
         assert super()._is_displayed(self._radio_lbl_user) is True, "Radio label User not Displayed"
 
-    def verify_drop_down_values(self, expected_options):
+    def verify_drop_down_values(self, expected_options: list):
         actual_option_list = super()._get_drp_dwn_opts(self._drp_down_options, True)
         for expected_value in expected_options:
             if expected_value in actual_option_list:
@@ -60,9 +62,21 @@ class LoginPageEcommerce(BasePage):
         self.verify_sign_in_btn_displayed()
         return True
 
-    def enter_login_details(self, username: str, password: str, submit: bool) -> None:
+    def enter_login_details(self, username: str, password: str, round_btn: str = None,
+                            drp_down: str = None, submit: bool = False) -> None:
         super()._type(self._txt_username, username)
         super()._type(self._txt_password, password)
+
+        if round_btn == "User":
+            super()._clickJS(self._radio_lbl_user)
+            super()._click(self._btn_dialog_login_page)
+
+        if round_btn == "Admin":
+            super()._clickJS(self._radio_lbl_admin)
+
+        if drp_down:
+            super()._drp_dwn_slt_by_value(self._drp_down_options, drp_down)
+
         if submit:
             super()._click(self._btn_sign_in)
 
@@ -78,10 +92,15 @@ class LoginPageEcommerce(BasePage):
     def change_window(self, window_address: str):
         super()._switch_to_window(window_address)
 
-    def verify_new_tab_page_title(self, page_title):
+    def verify_new_tab_page_title(self, page_title: str):
         extracted_text = super()._get_text(self._txt_header_page_title)
         assert extracted_text == page_title, "Title is not same"
 
     def url_validation(self, expected_url: str):
         actual_url = super().current_url
         assert expected_url == actual_url, f"Actual URL {actual_url} is not same as Expected URL {expected_url}"
+
+    def enterlogindetails(self, uname: str, pword: str):
+        super()._type(super()._positional_arg_locator(self._input_username_or_pw, "username"), uname)
+        super()._type(super()._positional_arg_locator(self._input_username_or_pw, "password"), pword)
+        super()._click(self._btn_sign_in)

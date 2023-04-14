@@ -23,7 +23,7 @@ class TestLoginPageEcom:
         """ Validate successfull login """
         login_page_ecom = LoginPageEcommerce(driver)
         login_page_ecom.open_ecom_url(url)
-        login_page_ecom.enter_login_details(uname, pword, submit_form)
+        login_page_ecom.enter_login_details(uname, pword, submit=submit_form)
         shop_page_ecom = ShopPageEcommerce(driver)
         shop_page_ecom.url_validation(expected_url)
         shop_page_ecom.validate_checkout_link()
@@ -36,7 +36,7 @@ class TestLoginPageEcom:
         """ Validate Unsuccessfull login """
         login_page_ecom = LoginPageEcommerce(driver)
         login_page_ecom.open_ecom_url(url)
-        login_page_ecom.enter_login_details(uname, pword, submit_form)
+        login_page_ecom.enter_login_details(uname, pword, submit=submit_form)
         login_page_ecom.validate_login_error_msg_displayed()
 
     @pytest.mark.All
@@ -54,7 +54,73 @@ class TestLoginPageEcom:
         login_page_ecom.verify_new_tab_page_title(page_title)
         login_page_ecom.url_validation(expected_url_1)
         login_page_ecom.change_window(window_addresses_list[0])
-        login_page_ecom.enter_login_details(uname, pword, submit_form)
+        login_page_ecom.enter_login_details(uname, pword, submit=submit_form)
         shop_page_ecom = ShopPageEcommerce(driver)
         shop_page_ecom.url_validation(expected_url_2)
+        shop_page_ecom.validate_checkout_link()
+
+    @pytest.mark.All
+    @pytest.mark.ecom_login
+    @pytest.mark.parametrize(("url", "uname", "pword", "round_btn", "drp_down", "expected_url"),
+                             [(config.url, "rahulshettyacademy", "learning", "User", "stud",
+                               "https://rahulshettyacademy.com/angularpractice/shop"),
+                              (config.url, "rahulshettyacademy", "learning", "User", "consult",
+                               "https://rahulshettyacademy.com/angularpractice/shop"),
+                              (config.url, "rahulshettyacademy", "learning", "User", "teach",
+                               "https://rahulshettyacademy.com/angularpractice/shop")])
+    def test_TC_5(self, driver, url, uname, pword, round_btn, drp_down, expected_url):
+        login_page_ecom = LoginPageEcommerce(driver)
+        login_page_ecom.open_ecom_url(url)
+        login_page_ecom.enter_login_details(uname, pword, round_btn, drp_down, submit=True)
+        shop_page_ecom = ShopPageEcommerce(driver)
+        shop_page_ecom.url_validation(expected_url)
+        shop_page_ecom.validate_checkout_link()
+
+    @pytest.mark.All
+    @pytest.mark.ecom_login
+    @pytest.mark.parametrize(("url", "uname", "pword", "round_btn", "drp_down", "expected_url"),
+                             [(config.url, "rahulshettyacademy", "learning", "User", "stud",
+                               "https://rahulshettyacademy.com/angularpractice/shop")])
+    def test_TC_7(self, driver, url, uname, pword, round_btn, drp_down, expected_url):
+        login_page_ecom = LoginPageEcommerce(driver)
+        login_page_ecom.open_ecom_url(url)
+        login_page_ecom.enter_login_details(uname, pword, round_btn, drp_down, submit=True)
+        shop_page_ecom = ShopPageEcommerce(driver)
+        shop_page_ecom.url_validation(expected_url)
+        shop_page_ecom.validate_checkout_link()
+
+    @pytest.mark.All
+    @pytest.mark.ecom_login
+    @pytest.mark.parametrize(("url", "uname", "pword", "round_btn", "drp_down", "expected_url"),
+                             [(config.url, "rahulshettyacademy", "learning", "User", "teach",
+                               "https://rahulshettyacademy.com/angularpractice/shop")])
+    def test_TC_7(self, driver, url, uname, pword, round_btn, drp_down, expected_url):
+        login_page_ecom = LoginPageEcommerce(driver)
+        login_page_ecom.open_ecom_url(url)
+        login_page_ecom.enter_login_details(uname, pword, round_btn, drp_down, submit=True)
+        shop_page_ecom = ShopPageEcommerce(driver)
+        shop_page_ecom.url_validation(expected_url)
+        shop_page_ecom.validate_checkout_link()
+
+    @pytest.mark.All
+    @pytest.mark.ecom_login
+    @pytest.mark.parametrize(("url", "uname", "pword", "round_btn", "drp_down", "expected_url"),
+                             [(config.url, "rahulshettyacademy", "learning", "User", "consult",
+                               "https://rahulshettyacademy.com/angularpractice/shop")])
+    def test_TC_8(self, driver, url, uname, pword, round_btn, drp_down, expected_url):
+        login_page_ecom = LoginPageEcommerce(driver)
+        login_page_ecom.open_ecom_url(url)
+        login_page_ecom.enter_login_details(uname, pword, round_btn, drp_down, submit=True)
+        shop_page_ecom = ShopPageEcommerce(driver)
+        shop_page_ecom.url_validation(expected_url)
+        shop_page_ecom.validate_checkout_link()
+
+    @pytest.mark.All
+    @pytest.mark.ecom_login
+    @pytest.mark.parametrize(("url", "uname", "pword"), [(config.url, "rahulshettyacademy", "learning")])
+    def test_TC_9(self, driver, url, uname, pword):
+        login_page_ecom = LoginPageEcommerce(driver)
+        login_page_ecom.open_ecom_url(url)
+        login_page_ecom.enterlogindetails(uname, pword)
+        shop_page_ecom = ShopPageEcommerce(driver)
         shop_page_ecom.validate_checkout_link()

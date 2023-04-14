@@ -48,5 +48,69 @@
 #         Expected URL: https://rahulshettyacademy.com/angularpractice/shop
 # step12: verify checkout button is displayed
 
+# TC_5
+# This Test case passes different set of drop down values
+# {drop down}   stud, teach, consultant
+# Validate user can login as user type and Student as Drop down value
+# Step1: Lauch URL https://rahulshettyacademy.com/loginpagePractise/
+# Step2: Type "rahulshettyacademy" in username field
+# step3: Type "learning" in password field
+# Step4: Select User round button
+# Step5: Click on "Okay" button in the alert box
+# Step6: Select {drop down} from the drop down value
+# step7: click on sign in button
+# step8: Verify shop page is displayed
+# step9: verify url
+#         Expected URL: https://rahulshettyacademy.com/angularpractice/shop
+# step10: verify checkout button is displayed
+
+# TC_6
+# Validate user can login as user type and Student as Drop down value
+# Step1: Lauch URL https://rahulshettyacademy.com/loginpagePractise/
+# Step2: Type "rahulshettyacademy" in username field
+# step3: Type "learning" in password field
+# Step4: Select User round button
+# Step5: Click on "Okay" button in the alert box
+# Step6: Select Student from the drop down value
+# step7: click on sign in button
+# step8: Verify shop page is displayed
+# step9: verify url
+#         Expected URL: https://rahulshettyacademy.com/angularpractice/shop
+# step10: verify checkout button is displayed
+
+# TC_7
+# Validate user can login as user type and Teacher as Drop down value
+# Step1: Lauch URL https://rahulshettyacademy.com/loginpagePractise/
+# Step2: Type "rahulshettyacademy" in username field
+# step3: Type "learning" in password field
+# Step4: Select User round button
+# Step5: Click on "Okay" button in the alert box
+# Step6: Select Teacher from the drop down value
+# step7: click on sign in button
+# step8: Verify shop page is displayed
+# step9: verify url
+#         Expected URL: https://rahulshettyacademy.com/angularpractice/shop
+# step10: verify checkout button is displayed
+
+# TC_8
+# Validate user can login as user type and Consultant as Drop down value
+# Step1: Lauch URL https://rahulshettyacademy.com/loginpagePractise/
+# Step2: Type "rahulshettyacademy" in username field
+# step3: Type "learning" in password field
+# Step4: Select User round button
+# Step5: Click on "Okay" button in the alert box
+# Step6: Select Consultant from the drop down value
+# step7: click on sign in button
+# step8: Verify shop page is displayed
+# step9: verify url
+#         Expected URL: https://rahulshettyacademy.com/angularpractice/shop
+# step10: verify checkout button is displayed
+
+# TC_9
+# Basic Positional argument login
+# Step1: Lauch URL https://rahulshettyacademy.com/loginpagePractise/
+# Step2: Type "rahulshettyacademy" in username field
+# step3: Type "learning" in password field
+# step4: click on sign in button
 
 

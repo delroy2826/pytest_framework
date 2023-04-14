@@ -65,3 +65,12 @@
 # _scroll_into_view_js = Scrolling to element using locator
 # _return_page_height = Returns total height of the page
 # _scroll_to_end_of_page = Scroll to end of the page
+# _positional_arg_locator = Locator formatting for dynamic xpath
+#                           Replaces arguments in locator element
+#                           Example:
+#                           1)
+#                           _input_username_or_pw = (By.XPATH, '//input[@name="{0}"]')
+#                           super()._type(super()._positional_arg_locator(self._input_username_or_pw, "username"), uname)
+#                           2)
+#                           _input_username_or_pw = (By.XPATH, '//input[@name="{0}" or @name="{1}"]')
+#                           super()._type(super()._positional_arg_locator(self._input_username_or_pw, "username", "password"), pword)
