@@ -1,5 +1,5 @@
 # TC_1
-# Verify all fields are displayed in login form
+# Verify all fields are displayed in log in form
 # Step 1: Lauch URL https://rahulshettyacademy.com/loginpagePractise/
 # Step 2: Validate Display of login fields
 #         Expected Login Page content :
@@ -12,7 +12,7 @@
 #             Sign in -> Button
 
 # TC_2
-# Validate successful login
+# Validate successful log in
 # Step1: Lauch URL https://rahulshettyacademy.com/loginpagePractise/
 # Step2: Type "rahulshettyacademy" in username field
 # step3: Type "learning" in password field
@@ -23,7 +23,7 @@
 # step7: verify checkout button is displayed
 
 # TC_3
-# Validate Unsuccessfull login
+# Validate Unsuccessfull log in
 # Step1: Lauch URL https://rahulshettyacademy.com/loginpagePractise/
 # Step2: Type "invaliduname" in username field
 # step3: Type "invalidpword" in password field
@@ -39,7 +39,7 @@
 # Step4: Verify the URL
 #         Expected URL: https://rahulshettyacademy.com/documents-request
 # Step5: Verify the header to display "DOCUMENTS REQUEST"
-# Step6: Go back to Parent tab and Login
+# Step6: Go back to Parent tab and Log in
 # Step7: Type "rahulshettyacademy" in username field
 # step8: Type "learning" in password field
 # step9: click on sign in button
@@ -51,7 +51,7 @@
 # TC_5
 # This Test case passes different set of drop down values
 # {drop down}   stud, teach, consultant
-# Validate user can login as user type and Student as Drop down value
+# Validate user can log in as user type and Student as Drop down value
 # Step1: Lauch URL https://rahulshettyacademy.com/loginpagePractise/
 # Step2: Type "rahulshettyacademy" in username field
 # step3: Type "learning" in password field
@@ -65,7 +65,7 @@
 # step10: verify checkout button is displayed
 
 # TC_6
-# Validate user can login as user type and Student as Drop down value
+# Validate user can log in as user type and Student as Drop down value
 # Step1: Lauch URL https://rahulshettyacademy.com/loginpagePractise/
 # Step2: Type "rahulshettyacademy" in username field
 # step3: Type "learning" in password field
@@ -79,7 +79,7 @@
 # step10: verify checkout button is displayed
 
 # TC_7
-# Validate user can login as user type and Teacher as Drop down value
+# Validate user can log in as user type and Teacher as Drop down value
 # Step1: Lauch URL https://rahulshettyacademy.com/loginpagePractise/
 # Step2: Type "rahulshettyacademy" in username field
 # step3: Type "learning" in password field
@@ -93,7 +93,7 @@
 # step10: verify checkout button is displayed
 
 # TC_8
-# Validate user can login as user type and Consultant as Drop down value
+# Validate user can log in as user type and Consultant as Drop down value
 # Step1: Lauch URL https://rahulshettyacademy.com/loginpagePractise/
 # Step2: Type "rahulshettyacademy" in username field
 # step3: Type "learning" in password field
@@ -107,10 +107,28 @@
 # step10: verify checkout button is displayed
 
 # TC_9
-# Basic Positional argument login
+# Basic Positional argument log in
 # Step1: Lauch URL https://rahulshettyacademy.com/loginpagePractise/
 # Step2: Type "rahulshettyacademy" in username field
 # step3: Type "learning" in password field
 # step4: click on sign in button
 
-
+# TC_10
+# Place order for multiple smartphone and verify if order is placed successfully
+# Step1: Lauch URL https://rahulshettyacademy.com/loginpagePractise/
+# Step2: Type "rahulshettyacademy" in username field
+# step3: Type "learning" in password field
+# step4: click on sign in button
+# step5: Verify shop page is displayed
+# step6: verify url
+#         Expected URL: https://rahulshettyacademy.com/angularpractice/shop
+# step7: verify checkout button is displayed
+# Step8: Add iphone x and Blackberry to cart
+# Step9: Navigate to checkout page by clicking on checkout button
+# Step10: Verify cart product
+#       Expected: Iphone 8 & Blackberry
+# Step 11: Click on Checkout button
+# Step 12: Type India in delivery location field
+# Step 13: Select t&c checkbox
+#Step 14: Click on Purchase
+# Step 15: Verify success message is displayed
