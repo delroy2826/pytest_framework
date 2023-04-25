@@ -1,0 +1,4 @@
+# _get = which returns a representational view of a resource's contents and data.
+# _post = Every POST method call should result in a new object being created (or possibly deleted) in the database.
+# _delete = A DELETE request should accept a unique identifier to remove only one data
+# _put = PUT can still be used for creating objects, although since it is idempotent, repeatedly executing the same request will have the same end result as the first time.

@@ -1,0 +1,40 @@
+#test_TC_1_API
+# Verify Total count and status code
+# Step1 : Method: GET Endpoint url "/user"
+# Step2 : Get Total count
+# Step3 : Verify status code to 200
+# Step4 : Verify Total Count
+#       Expected Count : 102
+
+#test_TC_2_API
+# Get List of Users with page limit as 50 and print 'firstName'
+# Step1 : Method: GET Endpoint url "/user"
+# Step2 : Params {'limit': 50}
+# Step3 : Verify status code to 200
+# Step4 : print all firstName
+
+#test_TC_3_API
+# Update lastName of user id "643fbe62ea551e4225736c32" and verify 'lastName' is updated
+# Step1: Method: PUT Endpoint url "/user/{user_id}"
+# Step2 : Payload { "lastName": "Oliveira"}
+# Step3 : Verify status code to 200
+# Step4 : Verify in Response 'lastName' is 'Oliveira'
+
+#test_TC_4_API
+# Get user detail by user id "643fbe62ea551e4225736c32"
+# Step1: Method: GET Endpoint url "/user/{user_id}"
+# Step2 : Verify status code to 200
+# Step3 : Print repsonse data
+
+#test_TC_5_API
+# Create User and Delete the created user
+# Step1: Method: POST   Endpoint url "/user/create"
+# Step2: Payload:
+# {"firstName":"Delroy", "lastName":"DelDete", "email":"DelroyDedslete@gmail.com" }
+# Step3: Verify Status code to 200
+# Step4: Get User ID
+# Step5: Method: DELETE Endpoint URL "/user/{{delete_user_id}}"
+# Verify User ID in response
+# Verify Status 200
+
+
