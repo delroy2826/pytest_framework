@@ -137,7 +137,11 @@ class TestLoginPageEcom:
     @pytest.mark.parametrize(("url", "uname", "pword", "submit_form", "expected_url", "prod_list", "delivery_loc"),
                              [(config.url, "rahulshettyacademy", "learning",
                                True, "https://rahulshettyacademy.com/angularpractice/shop",
-                               ['iphone X', 'Blackberry'], "India")])
+                               ['iphone X', 'Blackberry'], "India"),
+                              (config.url, "rahulshettyacademy", "learning",
+                               True, "https://rahulshettyacademy.com/angularpractice/shop",
+                               ['Samsung Note 8', 'Nokia Edge'], "Poland")
+                              ])
     def test_TC_10(self, driver, url, uname, pword, submit_form, expected_url, prod_list, delivery_loc):
         """ Place order for multiple smartphone and verify if order is placed successfully. """
         login_page_ecom = LoginPageEcommerce(driver)

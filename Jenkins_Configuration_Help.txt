@@ -54,3 +54,76 @@
 #                 call venv\Scripts\activate.bat
 #                 pytest -m  %TagTest% -n %parrallel% --html=reports/%TagTest%/report%TagTest%test.html
 #         -> Save
+#Github direct configuration for Jenkins
+# Configure github server in jenkins
+#     -> Launch Jenkins and Navigate to Manage Jenkins > System
+#         -Add GitHub Server
+#         - Provide
+#             Name = <Any Name>
+#             API URL = <https://api.github.com>
+#             Add Credential
+#                 - Add> Jenkins
+#                     - Kind = Secret text
+#                     - Secrete = <classic token from github (developer settings)>
+#                     - ID = Anyname
+#         - Test Connection
+#             Credentials verified for user delroy2826, rate limit: 4999 #Should give this output
+#           - Plugin Requirements for Jenkins
+#             Dashboard > Manage Jenkins > Plugins
+#                 -Git client plugin
+#                 -Git plugin
+#                 -Git server Plugin
+#                 -GitHub API Plugin
+#                 -GitHub Branch Source Plugin
+#                 -GitHub plugin
+#                 -Pipeline: GitHub Groovy Libraries
+# Jenkins Project Configuration for CICD
+# a) New Item->Enter item name-> Freestyle Project->ok
+# b) build configuration
+#Configure
+#              -> General -> GitHub project
+#                     Project url = https://github.com/delroy2826/pytest_framework.git/
+#              -> General -> This Project is Parameterized
+#                 1)Add Parameter-> Choice Parameter
+#                         Name:
+#                                 Browser
+#                         Choices:
+#                                 chrome
+#                                 firefox
+#                 2)Add Parameter-> Choice Parameter
+#                         Name:
+#                                 TagTest
+#                         Choices:
+#                                 All
+#                                 math
+#                                 login
+#                                 positive
+#                                 negative
+#                                 db_test
+#                                 wait_test
+#                                 content_validation
+#                                 ecom_login
+#                                 invalid_login
+#                 3)Add Parameter-> Choice Parameter
+#                         Name:
+#                                 parrallel
+#                         Choices:
+#                                 1
+#                                 2
+#                                 3
+#                                 4
+#                                 5
+#             -> Source Code Management -> Git
+#                 Repository URL = https://github.com/delroy2826/pytest_framework.git
+#                 Credentials = Select credential from drop down
+#             -> Branches to build
+#                 Branch Specifier (blank for 'any') = */master
+#             -> Build Steps -> Add build step -> Execute Windows batch command
+#                 python.exe -m pip install --upgrade pip
+#                 pip install virtualenv
+#                 virtualenv venv
+#                 call venv\Scripts\activate.bat
+#                 copy requirements.txt venv
+#                 python.exe -m pip install -r venv\requirements.txt
+#                 chcp 65001
+#                 pytest -m  %TagTest% -n %parrallel% --html=reports/%TagTest%/report%TagTest%test.html
