@@ -1,3 +1,4 @@
+#****************************************TEST_SUITE test_userdata_api.py***********************************************
 #test_TC_1_API
 # Verify Total count and status code
 # Step1 : Method: GET Endpoint url "/user"
@@ -37,4 +38,75 @@
 # Verify User ID in response
 # Verify Status 200
 
+#****************************************TEST_SUITE test_postdata_api.py***********************************************
+#test_TC_1_API
+#Get List of post text and likes
+# Step1 : Method: GET Endpoint url "/post"
+# Step2 : param {"limit":50}
+# step3 : Verify Status code to 200
+# step4 : print all the "text" and "likes" from the response
 
+#test_TC_2_API
+#Get List of post by user id "60d0fe4f5311236168a109ca"
+# Step1 : Method: GET Endpoint url "/user/{{user_id_post}}/post"
+# step2 : Verify Status code to 200
+# step3 : print all the "text" and "likes" from the response along with user id verification
+
+#test_TC_3_API
+# Get post by post id "60d21b4667d0d8992e610c85"
+#Step1 : Method: GET Endpoint url "/post/{{post_id}}"
+#Step2: Verify Status code to 200
+# Spte3: print text,likes, tags, firstName, lastName and verify post id from response
+
+#test_TC_4_API
+# A)
+#Create Post , Update Post, Verify post by id,Verify post by user,delete the post
+#pre-requisite data:
+# update_user_id =  643fbe62ea551e4225736c32
+# text = New Post Created
+# likes = 50
+# tags = [
+#         "Flower",
+#         "Blue Flower",
+#         "Butterfly"
+#     ]
+#
+# Step1: Method : Post Endpoint url "/post/create"
+# Step2: Create Post Payload
+# {
+#     "text": "New Post Created",
+#     "image": "https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg",
+#     "likes": 0,
+#     "tags": [],
+#     "owner": "{{update_user_id}}"
+# }
+# Step3: Verify Status Code 200
+# Step4: Verify Text, updated_user_id, tags, likes
+
+# B)
+# Update Post
+#pre-requisite data:
+# new_post_id : Extracted from Create Post response
+# text =  New Post Updated
+# likes = 5
+# Step5 :  Method : PUT   Enpoint url: /post/{{new_post_id}}
+# Step6 : Update Post Payload
+# {
+#     "text":"Life of Butterfly",
+#     "likes": 5
+# }
+#Step 7: Verify Status Code 200
+#Step 8: Verify Text, updated_user_id, likes
+
+# C)
+#pre-requisite data:
+# new_post_id : Extracted from Create Post response
+# Step 9: Method: GET Endpoint url: /post/{{new_post_id}}
+# Step 10: Verify Text, updated_user_id, likes, post id
+
+# D)
+#pre-requisite data:
+# new_post_id : Extracted from Create Post response
+# Step 11: Method: DELETE Endpoint url: /post/{{new_post_id}}
+# Step 12 : Verify Status code 200
+# Step 13 : Verify id

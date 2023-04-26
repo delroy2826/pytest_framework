@@ -120,7 +120,7 @@
 #                 Branch Specifier (blank for 'any') = */master
 #             -> Build Steps -> Add build step -> Execute Windows batch command
 #                 python.exe -m pip install --upgrade pip
-#                 pip install virtualenv
+#                 python.exe -m pip install install virtualenv
 #                 virtualenv venv
 #                 call venv\Scripts\activate.bat
 #                 copy requirements.txt venv
