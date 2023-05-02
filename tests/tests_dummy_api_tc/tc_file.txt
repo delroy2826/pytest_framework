@@ -110,3 +110,44 @@
 # Step 11: Method: DELETE Endpoint url: /post/{{new_post_id}}
 # Step 12 : Verify Status code 200
 # Step 13 : Verify id
+
+#****************************************TEST_SUITE test_commentdata_api.py***********************************************
+#test_TC_1_API
+# Get List of Comments
+# Step 1: Method: GET Endpoint URL: /comment
+# Step 2: Verify Status code 200
+# Step 3: Display title, firstName, lastName, message
+#
+#test_TC_2_API
+#pre-requisite
+# post_comment_id = "60d21b7967d0d8992e610d1b"
+# Get Comments for Post by POST ID
+# Step 1: Method: GET   Endpoint URL: /post/{{post_comment_id}}/comment
+# Step 2: Verify Status code 200
+# Step 3: Display title, firstName, lastName, message and Verify post id
+#
+#test_TC_3_API
+#pre-requisite
+# user_id_post = "60d0fe4f5311236168a109ca"
+# Get Comments for Post by user ID
+# Step 1: Method: GET   Endpoint URL: /user/{{user_id_post}}/comment
+# Step 2: Verify Status code 200
+# Step 3: Display title, firstName, lastName, message and Verify user id
+
+#test_TC_4_API
+# user_id_post = "60d0fe4f5311236168a109ca"
+# post_comment_id = "60d21b7967d0d8992e610d1b"
+# message = "Nice picture"
+# A
+#Create Comment , Verify the comment for the post, delete the comment
+# Step 1: Method : POST     Endpoint URL: /comment/create
+# Step 2 : Create Comment Payload
+# {
+#     "message": "Nice Picture Test",
+#     "owner": "{{user_id_post}}",
+#     "post": "{{post_id_for_comment}}"
+# }
+# Step 3: Verify message
+# B
+# Step 4: Method : DELETE   Endpoint URL: /comment/{{new_comment_id}}
+# Step 5: Verify response id

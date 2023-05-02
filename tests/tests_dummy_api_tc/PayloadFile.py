@@ -11,3 +11,9 @@ create_post_payload = {
     "tags": [],
     "owner": "user id to create post on behalf"
 }
+
+create_comment_payload = {
+    "message": "Dummy Message",
+    "owner": "{{user_id_post}}",
+    "post": "{{post_id_for_comment}}"
+}
