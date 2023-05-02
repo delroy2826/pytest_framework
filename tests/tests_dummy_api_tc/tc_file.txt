@@ -151,3 +151,9 @@
 # B
 # Step 4: Method : DELETE   Endpoint URL: /comment/{{new_comment_id}}
 # Step 5: Verify response id
+
+#****************************************TEST_SUITE test_tagdata_api.py*********************************************
+# Get List of tags
+# Step 1: Method: GET Endpoint URL: /tag
+# Step 2: Verify Status code 200
+# Step 3: print tags
