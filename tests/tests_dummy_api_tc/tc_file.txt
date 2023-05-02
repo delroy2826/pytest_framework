@@ -153,6 +153,7 @@
 # Step 5: Verify response id
 
 #****************************************TEST_SUITE test_tagdata_api.py*********************************************
+#test_TC_1_API
 # Get List of tags
 # Step 1: Method: GET Endpoint URL: /tag
 # Step 2: Verify Status code 200
